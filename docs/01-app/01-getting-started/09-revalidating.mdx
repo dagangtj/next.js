@@ -111,6 +111,8 @@ export async function updateUser(id) {
 
 You can reuse the same tag in multiple functions to revalidate them all at once. Call `revalidateTag` in a [Server Action](/docs/app/getting-started/mutating-data) or [Route Handler](/docs/app/api-reference/file-conventions/route).
 
+> **Warning:** By default, revalidation is **instance-local**. Calling `revalidateTag()` only invalidates the cache on the instance handling the request. In multi-instance or serverless environments, other instances may continue serving stale content. For distributed setups, see [Multi-Instance Considerations](/docs/app/guides/how-revalidation-works#multi-instance-considerations).
+
 > **Good to know:** The second argument sets how long stale content can be served while fresh content generates in the background. Once it expires, subsequent requests block until fresh content is ready. Using `'max'` gives the longest stale window.
 
 See the [`revalidateTag` API reference](/docs/app/api-reference/functions/revalidateTag) to learn more.
